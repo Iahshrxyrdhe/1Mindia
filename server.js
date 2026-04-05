@@ -11,8 +11,7 @@ app.get("/", (req, res) => {
 });
 
 // 🔴 YOUR DROPBOX LINK
-const DATA_URL = "https://www.dropbox.com/scl/fi/ahobdk534mhda2zqwgki1/Indian-1M-Sample.csv?rlkey=2mq94badx4xurqgcl2ql0gj20&st=u3u6d9ut&dl=1";
-
+const DATA_URL = "https://dl.dropboxusercontent.com/scl/fi/ahobdk534mhda2zqwgki1/Indian-1M-Sample.csv?rlkey=2mq94badx4xurqgcl2ql0gj20";
 // SEARCH route
 app.get("/data", async (req, res) => {
   const query = req.query.search;
