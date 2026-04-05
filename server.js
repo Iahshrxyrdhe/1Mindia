@@ -5,9 +5,15 @@ const readline = require("readline");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// 🔴 Apna Dropbox direct link (dl=1)
+// TEST route
+app.get("/", (req, res) => {
+  res.send("API WORKING ✅");
+});
+
+// 🔴 YOUR DROPBOX LINK
 const DATA_URL = "https://www.dropbox.com/scl/fi/ahobdk534mhda2zqwgki1/Indian-1M-Sample.csv?rlkey=2mq94badx4xurqgcl2ql0gj20&st=u3u6d9ut&dl=1";
 
+// SEARCH route
 app.get("/data", async (req, res) => {
   const query = req.query.search;
 
@@ -19,10 +25,6 @@ app.get("/data", async (req, res) => {
     const response = await fetch(DATA_URL, {
       headers: { "User-Agent": "Mozilla/5.0" }
     });
-
-    if (!response.ok) {
-      return res.status(500).json({ error: "Failed to fetch file" });
-    }
 
     const rl = readline.createInterface({
       input: response.body,
@@ -36,8 +38,7 @@ app.get("/data", async (req, res) => {
       if (line.toLowerCase().includes(query.toLowerCase())) {
         results.push(line);
         count++;
-
-        if (count >= 50) break; // limit
+        if (count >= 50) break;
       }
     }
 
